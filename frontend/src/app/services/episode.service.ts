@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Episode } from '../models/episode.model';
 import { PagedResponse } from '../models/paged-response.model';
+import { EpisodeDetail } from '../models/episode-detail.model';
 
 @Injectable({ providedIn: 'root' })
 export class EpisodeService {
@@ -16,5 +17,9 @@ export class EpisodeService {
       params = params.set('name', name);
     }
     return this.http.get<PagedResponse<Episode>>(this.baseUrl, { params });
+  }
+
+  getEpisodeById(id: number): Observable<EpisodeDetail> {
+    return this.http.get<EpisodeDetail>(`${this.baseUrl}/${id}`);
   }
 }

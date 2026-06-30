@@ -3,10 +3,12 @@ import { Subject, debounceTime, distinctUntilChanged, takeUntil } from 'rxjs';
 import { EpisodeService } from '../../services/episode.service';
 import { Episode } from '../../models/episode.model';
 import { PagedResponse } from '../../models/paged-response.model';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-episode-list',
   standalone: true,
+  imports: [RouterLink],
   templateUrl: './episode-list.html',
   styleUrl: './episode-list.css'
 })

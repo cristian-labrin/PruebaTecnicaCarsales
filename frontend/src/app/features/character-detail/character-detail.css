@@ -1,0 +1,113 @@
+.character {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 4rem;
+}
+
+.back-link {
+  display: inline-block;
+  color: var(--text-dim);
+  text-decoration: none;
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+  transition: color 0.2s ease;
+  background: none;
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
+  padding: 0;
+}
+
+.back-link:hover {
+  color: var(--portal);
+}
+
+.card {
+  display: grid;
+  grid-template-columns: 1fr;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+@media (min-width: 600px) {
+  .card {
+    grid-template-columns: 280px 1fr;
+  }
+}
+
+.card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  aspect-ratio: 1;
+}
+
+.card__body {
+  padding: 2rem;
+}
+
+.card__name {
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0 0 0.75rem;
+  color: var(--text);
+}
+
+.card__status {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  margin-bottom: 1.5rem;
+  background: var(--border);
+  color: var(--text-dim);
+}
+
+.card__status[data-status='Alive'] {
+  background: var(--portal-dim);
+  color: var(--portal);
+}
+
+.card__status[data-status='Dead'] {
+  background: rgba(255, 123, 114, 0.15);
+  color: var(--error);
+}
+
+.facts {
+  margin: 0;
+  display: grid;
+  gap: 1.25rem;
+}
+
+.fact {
+  margin: 0;
+}
+
+.fact dt {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+  margin-bottom: 0.25rem;
+}
+
+.fact dd {
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--text);
+}
+
+.state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--text-dim);
+}
+
+.state--error {
+  color: var(--error);
+}

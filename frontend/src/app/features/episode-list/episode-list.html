@@ -34,10 +34,12 @@
   } @else {
     <ul class="grid">
       @for (ep of episodes(); track ep.id) {
-        <li class="card">
-          <span class="card__code">{{ ep.episode }}</span>
-          <h2 class="card__name">{{ ep.name }}</h2>
-          <p class="card__date">{{ ep.airDate }}</p>
+        <li>
+          <a class="card" [routerLink]="['/episode', ep.id]">
+            <span class="card__code">{{ ep.episode }}</span>
+            <h2 class="card__name">{{ ep.name }}</h2>
+            <p class="card__date">{{ ep.airDate }}</p>
+          </a>
         </li>
       } @empty {
         <li class="state">No se encontraron episodios con ese nombre.</li>
