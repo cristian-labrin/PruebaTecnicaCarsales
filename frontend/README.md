@@ -1,59 +1,71 @@
-# RickAndMortyWeb
+# Rick and Morty Explorer
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.7.
+Aplicación web hecha en Angular que permite explorar los episodios de Rick and Morty, ver el detalle de cada uno con sus personajes, y navegar hasta la ficha de cada personaje. Consume los datos desde un backend propio (BFF en .NET 8), no directamente desde la API pública.
 
-## Development server
+## Requisitos
 
-To start a local development server, run:
+- [Node.js](https://nodejs.org/) 20 o superior
+- El backend (`RickAndMortyBff`) corriendo en `https://localhost:7088`
 
-```bash
-ng serve
-```
+## Cómo levantar la web
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Instala las dependencias la primera vez:
 
 ```bash
-ng generate component component-name
+npm install
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Y arranca el servidor de desarrollo:
 
 ```bash
-ng generate --help
+npm start
 ```
 
-## Building
+La aplicación queda disponible en:
 
-To build the project run:
-
-```bash
-ng build
+```
+http://localhost:4200
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+> Importante: el backend tiene que estar corriendo en paralelo. Son dos servidores distintos. Si la web carga pero no muestra episodios, lo más probable es que el backend no esté levantado.
 
-## Running unit tests
+## Configuración
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+La URL del backend no está escrita en el código. Está en los archivos de entorno, dentro de `src/environments/`:
 
-```bash
-ng test
+```typescript
+export const environment = {
+  production: false,
+  apiUrl: 'https://localhost:7088/api'
+};
 ```
 
-## Running end-to-end tests
+## Qué se puede hacer
 
-For end-to-end (e2e) testing, run:
+- **Listado de episodios** con paginación.
+- **Búsqueda** de episodios por nombre, con un pequeño retardo para no disparar una petición por cada tecla, y un botón para limpiar el filtro.
+- **Detalle de episodio**: muestra la información del episodio y la lista de personajes que aparecen, cada uno como un enlace.
+- **Detalle de personaje**: ficha con su imagen, estado, especie, género, origen y ubicación.
+- **Manejo de errores** visible: si una carga falla, se muestra un mensaje claro con opción de reintentar.
 
-```bash
-ng e2e
-```
+La navegación es de tres niveles: del listado entras a un episodio, del episodio a un personaje, y desde el personaje vuelves al punto anterior.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## Cómo está organizado
 
-## Additional Resources
+- **features/** — cada vista principal en su propia carpeta: `episode-list`, `episode-detail`, `character-detail`.
+- **shared/** — componentes reutilizables entre vistas, como el mensaje de error.
+- **services/** — la comunicación con el backend, separada de los componentes.
+- **models/** — las interfaces TypeScript que tipan los datos. No se usa `any`.
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Detalles técnicos
+
+La aplicación usa varias de las capacidades recientes de Angular:
+
+- **Signals** para el manejo de estado dentro de los componentes.
+- **Standalone components**, sin módulos.
+- **Detección de cambios sin Zone.js** (zoneless).
+- **Nuevo control de flujo** en las plantillas (`@if`, `@for`, `@defer`).
+- **Carga diferida** de la lista de personajes con `@defer`, junto con hidratación incremental sobre SSR.
+- **inputs y outputs basados en signals** en el componente de error.
+
+Los estilos están escritos en CSS puro, sin frameworks. El tema visual se inspira en la estética del portal de la serie, usado con moderación como color de acento.
