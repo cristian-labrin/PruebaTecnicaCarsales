@@ -1,6 +1,6 @@
-# Rick and Morty Explorer
+# Explorador de Rick and Morty
 
-Aplicación web hecha en Angular que permite explorar los episodios de Rick and Morty, ver el detalle de cada uno con sus personajes, y navegar hasta la ficha de cada personaje. Consume los datos desde un backend propio (BFF en .NET 8), no directamente desde la API pública.
+Aplicación web realizada en Angular, que permite explorar los episodios de Rick and Morty, ver el detalle de cada uno con sus personajes, y navegar hasta la ficha de cada personaje. Consume los datos desde un backend propio (BFF en .NET 8), no directamente desde la API pública.
 
 ## Requisitos
 
@@ -55,7 +55,7 @@ La navegación es de tres niveles: del listado entras a un episodio, del episodi
 - **features/** — cada vista principal en su propia carpeta: `episode-list`, `episode-detail`, `character-detail`.
 - **shared/** — componentes reutilizables entre vistas, como el mensaje de error.
 - **services/** — la comunicación con el backend, separada de los componentes.
-- **models/** — las interfaces TypeScript que tipan los datos. No se usa `any`.
+- **models/** — las interfaces TypeScript que tipean los datos. No se hace uso de `any`.
 
 ## Detalles técnicos
 
@@ -68,4 +68,4 @@ La aplicación usa varias de las capacidades recientes de Angular:
 - **Carga diferida** de la lista de personajes con `@defer`, junto con hidratación incremental sobre SSR.
 - **inputs y outputs basados en signals** en el componente de error.
 
-Los estilos están escritos en CSS puro, sin frameworks. El tema visual se inspira en la estética del portal de la serie, usado con moderación como color de acento.
+Los estilos están escritos en CSS puro, sin uso de frameworks. El tema visual se inspira en la estética del portal de la serie.

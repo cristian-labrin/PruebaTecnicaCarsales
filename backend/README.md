@@ -1,8 +1,8 @@
 # RickAndMortyBff
 
-API en .NET 8 que funciona como Backend for Frontend (BFF) para la aplicación de Rick and Morty. Su trabajo es consumir la [API pública de Rick and Morty](https://rickandmortyapi.com/) y exponer al frontend una versión adaptada de los datos: limpia, tipada y pensada para lo que la interfaz necesita mostrar.
+API en .NET 8 que funciona como Backend for Frontend (BFF) para la aplicación de Rick and Morty. Su trabajo es consumir la API pública de Rick and Morty (https://rickandmortyapi.com/) y exponer al frontend una versión adaptada de los datos: limpia, tipada y pensada para lo que la interfaz necesita mostrar.
 
-El frontend nunca habla directo con la API externa. Pasa siempre por este backend, que centraliza el consumo, transforma las respuestas y maneja los errores en un solo lugar.
+El frontend nunca habla directo con la API externa. Conversa con el backend, el cual centraliza el consumo, transforma las respuestas y maneja los errores en un solo lugar.
 
 ## Requisitos
 
@@ -18,15 +18,13 @@ cd RickAndMortyBff
 dotnet run
 ```
 
-O bien, abre `RickAndMortyBff.slnx` en Visual Studio y ejecuta con F5.
+O bien, abre `RickAndMortyBff.slnx` en Visual Studio 2026 y ejecuta con F5.
 
-La API queda disponible en `https://localhost:7088`. En modo desarrollo se habilita Swagger para explorar y probar los endpoints:
+La API quedó disponible en mi equipo con el puerto `https://localhost:7088`. En modo desarrollo se habilita Swagger para explorar y probar los endpoints:
 
 ```
 https://localhost:7088/swagger
 ```
-
-> La primera vez puede que el navegador pida confiar en el certificado de desarrollo. Si las llamadas fallan por certificado, ejecuta una vez `dotnet dev-certs https --trust`.
 
 ## Configuración
 
@@ -40,7 +38,7 @@ La URL de la API externa no está escrita en el código. Vive en `appsettings.js
 }
 ```
 
-Esa configuración se lee de forma tipada mediante una clase de opciones, y se inyecta en el cliente HTTP. Cambiar de entorno o de URL no requiere tocar código.
+Esa configuración se lee de forma tipada mediante una clase de opciones, y se inyecta en el cliente HTTP.
 
 ## Endpoints
 
@@ -75,4 +73,4 @@ El proyecto `RickAndMortyBff.Tests` contiene pruebas unitarias del servicio de e
 dotnet test
 ```
 
-O desde el Explorador de pruebas de Visual Studio.
+O desde el Explorador de pruebas de Visual Studio 2026.
