@@ -4,6 +4,7 @@ namespace RickAndMortyBff.Services
 {
     public interface IEpisodeService
     {
-        Task<PagedResponseDto<EpisodioDto>> GetEpisodesAsync(int page, CancellationToken cancellationToken);
+        Task<PagedResponseDto<EpisodioDto>> GetEpisodesAsync(int page, string? name, CancellationToken cancellationToken);
+        Task<EpisodeDetailDto?> GetEpisodeDetailAsync(int id, CancellationToken cancellationToken);
     }
 }

@@ -22,6 +22,7 @@ builder.Services.AddHttpClient<IRickAndMortyClient, RickAndMortyClient>((service
 });
 
 builder.Services.AddScoped<IEpisodeService, EpisodeService>();
+builder.Services.AddScoped<ICharacterService, CharacterService>();
 
 const string corsPolicy = "AllowFrontend";
 builder.Services.AddCors(options =>

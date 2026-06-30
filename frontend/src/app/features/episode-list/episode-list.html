@@ -5,6 +5,22 @@
     <p class="episodes__subtitle">Explora las aventuras a través del multiverso</p>
   </header>
 
+  <div class="search">
+    <input
+      type="text"
+      class="search__input"
+      placeholder="Buscar episodio por nombre…"
+      [value]="searchTerm()"
+      (input)="onSearch($any($event.target).value)"
+      aria-label="Buscar episodio por nombre"
+    />
+    @if (searchTerm()) {
+      <button class="search__clear" (click)="clearSearch()" aria-label="Limpiar búsqueda">
+        Limpiar
+      </button>
+    }
+  </div>
+
   @if (loading()) {
     <div class="state state--loading">
       <span class="portal-spinner" aria-hidden="true"></span>
@@ -24,7 +40,7 @@
           <p class="card__date">{{ ep.airDate }}</p>
         </li>
       } @empty {
-        <li class="state">No hay episodios para mostrar.</li>
+        <li class="state">No se encontraron episodios con ese nombre.</li>
       }
     </ul>
 
