@@ -2,11 +2,12 @@ import { Component, inject, signal, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { EpisodeService } from '../../services/episode.service';
 import { EpisodeDetail as EpisodeDetailModel } from '../../models/episode-detail.model';
+import { ErrorMessage } from '../../shared/error-message/error-message';
 
 @Component({
   selector: 'app-episode-detail',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, ErrorMessage],
   templateUrl: './episode-detail.html',
   styleUrl: './episode-detail.css'
 })

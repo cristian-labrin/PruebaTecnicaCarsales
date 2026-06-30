@@ -4,11 +4,12 @@ import { EpisodeService } from '../../services/episode.service';
 import { Episode } from '../../models/episode.model';
 import { PagedResponse } from '../../models/paged-response.model';
 import { RouterLink } from '@angular/router';
+import { ErrorMessage } from '../../shared/error-message/error-message';
 
 @Component({
   selector: 'app-episode-list',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, ErrorMessage],
   templateUrl: './episode-list.html',
   styleUrl: './episode-list.css'
 })

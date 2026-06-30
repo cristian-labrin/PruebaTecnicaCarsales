@@ -27,11 +27,12 @@
       <p>Abriendo portal…</p>
     </div>
   } @else if (error()) {
-    <div class="state state--error" role="alert">
-      <p>{{ error() }}</p>
-      <button class="btn" (click)="loadEpisodes(currentPage())">Reintentar</button>
-    </div>
-  } @else {
+      <app-error-message
+        [message]="error()!"
+        [showRetry]="true"
+        (retry)="loadEpisodes(currentPage())"
+      />
+    } @else {
     <ul class="grid">
       @for (ep of episodes(); track ep.id) {
         <li>

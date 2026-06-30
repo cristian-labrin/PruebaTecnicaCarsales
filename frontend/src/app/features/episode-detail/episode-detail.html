@@ -7,10 +7,8 @@
       <p>Abriendo portal…</p>
     </div>
   } @else if (error()) {
-    <div class="state state--error" role="alert">
-      <p>{{ error() }}</p>
-    </div>
-  } @else if (episode(); as ep) {
+      <app-error-message [message]="error()!" />
+    } @else if (episode(); as ep) {
     <header class="detail__header">
       <span class="detail__code">{{ ep.episode }}</span>
       <h1 class="detail__title">{{ ep.name }}</h1>
@@ -18,16 +16,24 @@
     </header>
 
     <h2 class="detail__subtitle">Personajes</h2>
-    <ul class="chips">
-      @for (character of ep.characters; track character.id) {
-        <li>
-          <a class="chip" [routerLink]="['/character', character.id]">
-            {{ character.name }}
-          </a>
-        </li>
-      } @empty {
-        <li class="state">Este episodio no tiene personajes registrados.</li>
-      }
-    </ul>
+    @defer (on viewport) {
+      <ul class="chips">
+        @for (character of ep.characters; track character.id) {
+          <li>
+            <a class="chip" [routerLink]="['/character', character.id]">
+              {{ character.name }}
+            </a>
+          </li>
+        } @empty {
+          <li class="state">Este episodio no tiene personajes registrados.</li>
+        }
+      </ul>
+    } @placeholder {
+      <div class="chips-placeholder">Cargando personajes…</div>
+    } @loading (minimum 300ms) {
+      <div class="chips-placeholder">
+        <span class="portal-spinner" aria-hidden="true"></span>
+      </div>
+    }
   }
 </section>

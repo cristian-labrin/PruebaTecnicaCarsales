@@ -89,3 +89,11 @@
 .state--error {
   color: var(--error);
 }
+
+.chips-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80px;
+  color: var(--text-dim);
+}

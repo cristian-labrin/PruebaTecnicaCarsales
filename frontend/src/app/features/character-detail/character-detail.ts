@@ -3,11 +3,12 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CharacterService } from '../../services/character.service';
 import { Character } from '../../models/character.model';
 import { Location } from '@angular/common';
+import { ErrorMessage } from '../../shared/error-message/error-message';
 
 @Component({
   selector: 'app-character-detail',
   standalone: true,
-  imports: [RouterLink],
+  imports: [ErrorMessage],
   templateUrl: './character-detail.html',
   styleUrl: './character-detail.css'
 })

@@ -7,10 +7,8 @@
       <p>Abriendo portal…</p>
     </div>
   } @else if (error()) {
-    <div class="state state--error" role="alert">
-      <p>{{ error() }}</p>
-    </div>
-  } @else if (character(); as char) {
+      <app-error-message [message]="error()!" />
+    } @else if (character(); as char) {
     <article class="card">
       <img class="card__image" [src]="char.image" [alt]="char.name" />
       <div class="card__body">
