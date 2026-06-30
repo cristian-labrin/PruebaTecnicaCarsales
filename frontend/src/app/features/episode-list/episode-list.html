@@ -1,0 +1,41 @@
+<section class="episodes">
+  <header class="episodes__header">
+    <p class="episodes__eyebrow">Rick and Morty</p>
+    <h1 class="episodes__title">Episodios</h1>
+    <p class="episodes__subtitle">Explora las aventuras a través del multiverso</p>
+  </header>
+
+  @if (loading()) {
+    <div class="state state--loading">
+      <span class="portal-spinner" aria-hidden="true"></span>
+      <p>Abriendo portal…</p>
+    </div>
+  } @else if (error()) {
+    <div class="state state--error" role="alert">
+      <p>{{ error() }}</p>
+      <button class="btn" (click)="loadEpisodes(currentPage())">Reintentar</button>
+    </div>
+  } @else {
+    <ul class="grid">
+      @for (ep of episodes(); track ep.id) {
+        <li class="card">
+          <span class="card__code">{{ ep.episode }}</span>
+          <h2 class="card__name">{{ ep.name }}</h2>
+          <p class="card__date">{{ ep.airDate }}</p>
+        </li>
+      } @empty {
+        <li class="state">No hay episodios para mostrar.</li>
+      }
+    </ul>
+
+    <nav class="pagination" aria-label="Paginación de episodios">
+      <button class="btn" [disabled]="!hasPrev()" (click)="goToPage(currentPage() - 1)">
+        Anterior
+      </button>
+      <span class="pagination__info">Página {{ currentPage() }} de {{ totalPages() }}</span>
+      <button class="btn" [disabled]="!hasNext()" (click)="goToPage(currentPage() + 1)">
+        Siguiente
+      </button>
+    </nav>
+  }
+</section>
