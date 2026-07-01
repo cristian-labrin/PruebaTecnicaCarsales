@@ -11,7 +11,7 @@
       class="search__input"
       placeholder="Buscar episodio por nombre…"
       [value]="searchTerm()"
-      (input)="onSearch($any($event.target).value)"
+      (input)="onSearch($event)"
       aria-label="Buscar episodio por nombre"
     />
     @if (searchTerm()) {

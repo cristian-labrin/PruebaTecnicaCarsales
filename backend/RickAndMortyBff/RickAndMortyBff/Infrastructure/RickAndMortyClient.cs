@@ -13,7 +13,7 @@ namespace RickAndMortyBff.Infrastructure
             _httpClient = httpClient;
         }
 
-        public async Task<RickAndMortyApiResponse<EpisodioExternal>> GetEpisodesAsync(int page, string? name, CancellationToken cancellationToken)
+        public async Task<RickAndMortyApiResponse<EpisodeExternal>> GetEpisodesAsync(int page, string? name, CancellationToken cancellationToken)
         {
             var url = $"episode?page={page}";
             if (!string.IsNullOrWhiteSpace(name))
@@ -25,16 +25,16 @@ namespace RickAndMortyBff.Infrastructure
 
             if (response.StatusCode == HttpStatusCode.NotFound)
             {
-                return new RickAndMortyApiResponse<EpisodioExternal>();
+                return new RickAndMortyApiResponse<EpisodeExternal>();
             }
 
             response.EnsureSuccessStatusCode();
 
-            var data = await response.Content.ReadFromJsonAsync<RickAndMortyApiResponse<EpisodioExternal>>(cancellationToken);
-            return data ?? new RickAndMortyApiResponse<EpisodioExternal>();
+            var data = await response.Content.ReadFromJsonAsync<RickAndMortyApiResponse<EpisodeExternal>>(cancellationToken);
+            return data ?? new RickAndMortyApiResponse<EpisodeExternal>();
         }
 
-        public async Task<EpisodioExternal?> GetEpisodeByIdAsync(int id, CancellationToken cancellationToken)
+        public async Task<EpisodeExternal?> GetEpisodeByIdAsync(int id, CancellationToken cancellationToken)
         {
             var response = await _httpClient.GetAsync($"episode/{id}", cancellationToken);
 
@@ -44,7 +44,7 @@ namespace RickAndMortyBff.Infrastructure
             }
 
             response.EnsureSuccessStatusCode();
-            return await response.Content.ReadFromJsonAsync<EpisodioExternal>(cancellationToken);
+            return await response.Content.ReadFromJsonAsync<EpisodeExternal>(cancellationToken);
         }
 
         public async Task<IReadOnlyList<CharacterExternal>> GetCharactersByIdsAsync(IEnumerable<int> ids, CancellationToken cancellationToken)

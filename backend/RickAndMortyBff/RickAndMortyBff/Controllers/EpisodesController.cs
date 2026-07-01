@@ -16,7 +16,7 @@ namespace RickAndMortyBff.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<PagedResponseDto<EpisodioDto>>> GetEpisodes(
+        public async Task<ActionResult<PagedResponseDto<EpisodeDto>>> GetEpisodes(
             [FromQuery] int page = 1,
             [FromQuery] string? name = null,
             CancellationToken cancellationToken = default)

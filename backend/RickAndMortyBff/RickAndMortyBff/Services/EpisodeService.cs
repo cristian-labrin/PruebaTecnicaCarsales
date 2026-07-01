@@ -13,13 +13,13 @@ namespace RickAndMortyBff.Services
             _client = client;
         }
 
-        public async Task<PagedResponseDto<EpisodioDto>> GetEpisodesAsync(int page, string? name, CancellationToken cancellationToken)
+        public async Task<PagedResponseDto<EpisodeDto>> GetEpisodesAsync(int page, string? name, CancellationToken cancellationToken)
         {
             var external = await _client.GetEpisodesAsync(page, name, cancellationToken);
 
             var items = external.Results.Select(MapToEpisodeDto);
 
-            return new PagedResponseDto<EpisodioDto>
+            return new PagedResponseDto<EpisodeDto>
             {
                 Items = items,
                 CurrentPage = page,
@@ -55,7 +55,7 @@ namespace RickAndMortyBff.Services
             };
         }
 
-        private static EpisodioDto MapToEpisodeDto(EpisodioExternal e) => new()
+        private static EpisodeDto MapToEpisodeDto(EpisodeExternal e) => new()
         {
             Id = e.Id,
             Name = e.Name,

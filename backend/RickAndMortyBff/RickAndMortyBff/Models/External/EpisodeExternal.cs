@@ -2,7 +2,7 @@
 
 namespace RickAndMortyBff.Models.External
 {
-    public class EpisodioExternal
+    public class EpisodeExternal
     {
         [JsonPropertyName("id")]
         public int Id { get; set; }

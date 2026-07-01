@@ -43,7 +43,8 @@ export class EpisodeList implements OnInit, OnDestroy {
     this.destroy.complete();
   }
 
-  protected onSearch(value: string): void {
+  protected onSearch(event: Event): void {
+    const value = (event.target as HTMLInputElement).value;
     this.searchInput.next(value);
   }
 

@@ -12,7 +12,7 @@ namespace RickAndMortyBff.Tests
         public async Task GetEpisodesAsync_MapeaDatosYCalculaPaginacion_Correctamente()
         {
             // Arrange: preparamos un cliente falso que devuelve datos controlados
-            var apiResponse = new RickAndMortyApiResponse<EpisodioExternal>
+            var apiResponse = new RickAndMortyApiResponse<EpisodeExternal>
             {
                 Info = new ApiInfo
                 {
@@ -23,7 +23,7 @@ namespace RickAndMortyBff.Tests
                 },
                 Results =
                 [
-                    new EpisodioExternal
+                    new EpisodeExternal
                 {
                     Id = 1,
                     Name = "Pilot",
@@ -60,7 +60,7 @@ namespace RickAndMortyBff.Tests
         public async Task GetEpisodesAsync_CuandoNoHayResultados_DevuelveListaVacia()
         {
             // Arrange: el cliente devuelve una respuesta vacía (sin episodios)
-            var emptyResponse = new RickAndMortyApiResponse<EpisodioExternal>
+            var emptyResponse = new RickAndMortyApiResponse<EpisodeExternal>
             {
                 Info = new ApiInfo { Count = 0, Pages = 0, Next = null, Prev = null },
                 Results = []
